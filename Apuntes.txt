@@ -1,0 +1,31 @@
+-----------------------------------------------------------
+DATOS IMPORTANTES
+-----------------------------------------------------------
+
+
+-----------------------------------------------------------
+PROYECTO PHP (WS3)
+-----------------------------------------------------------
+
+1:_ Colocar el archivo dentro del servidor local(XAMPP, WAMMP, ..etc)
+
+2.-En el archivo index.html cambiar el valor de la variable URL por el valor correspondiente al servidor al cual se va realizar las solcitudes HTTP
+	const URL = "http://186.4.218.55:8082";
+
+3.- Cambiar el valor de la constante global que define el URL del servidor en el archivo login.php:
+	define("BASE_URL", "http://186.4.218.55:8082"); 
+
+
+
+-----------------------------------------------------------
+PROYECTO NODEJS (API)
+-----------------------------------------------------------
+
+1:_ Instalar las dependencias del proyecto eejcutando el siguente comando en la carpeta raíz del mismo:
+	npm install
+
+2.-En el archivo public/index.html cambiar el valor de la variable URL por el valor correspondiente al servidor al cual se va realizar las solcitudes HTTP
+	const URL = "http://186.4.218.55:8082";
+
+3.- Cambiar el valor de la constante global que define el URL del servidor en el archivo index.js:
+	const URL = "http://186.4.218.55:8082";
