@@ -29,3 +29,5 @@ PROYECTO NODEJS (API)
 
 3.- Cambiar el valor de la constante global que define el URL del servidor en el archivo index.js:
 	const URL = "http://186.4.218.55:8082";
+
+4.- Ejecutar npm start

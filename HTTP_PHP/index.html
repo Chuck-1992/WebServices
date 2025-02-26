@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pruebas Mba3 | Proxy</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <style>
+        body {
+            font-family: Arial;
+            background-image: url(Images/fondo.webp);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .form-row {
+            margin-top: 20px;
+        }
+
+        .content-form {
+            padding: 10px 20px 20px 20px;
+            /* height: 0vh; */
+        }
+
+        .content-form-row {
+            background-color: rgba(182, 185, 190, 0.83);
+            padding: 40px 30px;
+            border-radius: 15px;
+            font-weight: 700 !important;
+        }
+
+        .btn-info {
+            background: #6b949d;
+            color: white;
+            border: 1px solid #6b949d;
+        }
+
+        .btn-info:hover {
+            background: #6b949da3;
+            border: 1px solid #6b949d;
+        }
+
+        .button-payments {
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: start;
+            flex-direction: column;
+            background-color: transparent;
+        }
+
+        .button-payments button {
+            border: none;
+            margin-top: 20px;
+        }
+
+        .button-payments button span {
+            margin-left: 0;
+            transition: 0.3s ease;
+        }
+
+        .button-payments button span:hover {
+            color: #6b949d;
+            margin-left: 10px;
+            transition: 1s ease;
+
+        }
+
+        .fa {
+            color: #19468ab2;
+            font-weight: 900 !important;
+            font-size: 20px;
+        }
+
+        .js-payment-checkout {
+            background-color: transparent;
+            font-weight: 700 !important;
+        }
+
+        .image-form {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .image-form img {
+            width: 130px;
+            background-color: rgb(132, 192, 76);
+            border-radius: 100%;
+            padding: 10px 20px;
+        }
+
+        textarea {
+            border: 2px solid rgb(122, 95, 203) !important;
+            background-color: white !important;
+        }
+
+        .loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(21, 20, 20, 0.319);
+            height: 100%;
+        }
+
+        .loader img {
+            width: 35px;
+        }
+
+
+        .ip-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="ip-container">
+        <h1 id="sesion_data" style="color: rgba(0, 0, 0, 0.38);"></h1>
+    </div>
+
+
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+
+            <div class="col-lg-6 ">
+                <div class="content-form">
+                    <div class="content-form-row">
+
+                        <div class="image-form">
+                            <img src="Images/login.png" alt="">
+                        </div>
+
+
+                        <form id="loginForm">
+                            <div class="form-row">
+                                <label class="mb-2 mx-2" for="codigo">Codigo:</label>
+                                <input class="form-control" type="text" id="codigo" name="codigo" required />
+                            </div>
+
+                            <div class="form-row">
+                                <label class="mb-2 mx-2" for="password">Contraseña:</label>
+                                <input class="form-control" type="password" id="password" name="password" />
+                            </div>
+
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-info" id="btnIniciarSesion">
+                                    Iniciar sesión
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="button-payments">
+                    <button class="js-payment-checkout" onclick="crearToken()"><i class="fa fa-key mx-1"></i><span>
+                            Crear TOKEN WEB</span></button>
+                    <button class="js-payment-checkout" onclick="crearpeticion()"><i class="fa fa-globe mx-1"></i>
+                        <span> Peticion WEB </span></button>
+                    <button class="js-payment-checkout" onclick="crearpeticion2()"><i class="fa fa-globe mx-1"></i>
+                        <span>Peticion WEB2</span></button>
+                    <form id="mbaDosForm">
+                        <button type="submit" id="btnDosForm" class="js-payment-checkout" onclick="ataqueDoS()"><i
+                                class="fa fa-lock mx-1"></i>
+                            <span>Ataque DoS</span>
+                        </button>
+                    </form>
+                    <form id="mbaConsultaForm">
+                        <button type="submit" class="js-payment-checkout" onclick="consulta()"><i
+                                class="fa fa-laptop mx-1"></i><span>MBA3</span>
+                        </button>
+                    </form>
+
+                    <form id="mbaApiExternaForm">
+                        <button type="submit" class="js-payment-checkout">
+                            <i class="fa fa-search mx-1"></i>
+                            <span>MBA3 Consulta Clientes</span>
+                        </button>
+                    </form>
+
+
+                    <form id="mbaApiForm">
+                        <button type="submit" class="js-payment-checkout" id="btnMbaApiForm">
+                            <i class="fa fa-cloud mx-1"></i>
+                            <span>MBA3 API</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="imagen px-3">
+            <div style="display: none;" id="message"></div>
+            <div class="form-row" style="position: relative;">
+                <div class="loader">
+                    <img src="Images/loader.gif" alt="">
+                </div>
+                <div class="text-area">
+                    <textarea class="form-control" id="respuesta" rows="5"></textarea>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        /********************************************************************
+            Método para enviarlas las credenciales estáticas al formulario
+        *********************************************************************/
+
+        const URL = "http://186.4.218.55:8082";
+
+        $(".loader").hide();
+        document.getElementById("codigo").value = "API001";
+        document.getElementById("password").value = "";
+
+        localStorage.ip = URL;
+
+        let ipCofig = localStorage.ip.split("//")
+        document.getElementById("sesion_data").innerHTML = ipCofig[1];
+
+        /********************************************************************
+            Método para validar inicio de sesión
+        *********************************************************************/
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Login de usuario
+            const form = document.getElementById("loginForm");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                iniciarSesion();
+            });
+
+
+            // Ejecución API consulta
+            const formApi = document.getElementById("mbaApiForm");
+
+            formApi.addEventListener("submit", function (event) {
+                event.preventDefault();
+                API_Clientes();
+            });
+
+            // Consultas Externas Clientes
+            const formApiCliente = document.getElementById("mbaApiExternaForm");
+
+            formApiCliente.addEventListener("submit", function (event) {
+                event.preventDefault();
+                consulta_clientes();
+            });
+
+            // Consultas Externas
+            const formConsulta = document.getElementById("mbaConsultaForm");
+
+            formConsulta.addEventListener("submit", function (event) {
+                event.preventDefault();
+                consulta();
+            });
+
+
+
+            // Consultas Externas
+            const formDOS = document.getElementById("mbaDosForm");
+
+            formDOS.addEventListener("submit", function (event) {
+                event.preventDefault();
+                ataqueDoS();
+            });
+
+
+
+        });
+
+
+        function iniciarSesion() {
+
+            try {
+
+                const dataSend = {
+                    codigo: document.getElementById("codigo").value,
+                    pwd: document.getElementById("password").value,
+                };
+
+                const url = "login.php?action=iniciarSesion";
+
+                $(".loader").show();
+
+                fetch(url, {
+                    credentials: 'include',
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(dataSend),
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Error en la solicitud: " + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        setTimeout(() => {
+                            let dataResponse = "";
+
+                            if (!data.jwt) {
+
+                                dataResponse = JSON.stringify(data, null, 2);
+                            } else {
+
+                                dataResponse = decodeJWT(data.jwt);
+
+
+                            }
+
+                            localStorage.jwt = data.jwt || "";
+
+                            document.getElementById("respuesta").value =
+                                "Iniciar sesión:\n" + dataResponse;
+
+                            document.getElementById("message").innerHTML =
+                                "Inicio de sesión exitoso!";
+
+                            $(".loader").hide();
+                        }, 1000);
+                    })
+                    .catch((error) => {
+                        setTimeout(() => {
+                            console.error("Error:", error);
+
+                            document.getElementById("respuesta").value =
+                                "Iniciar sesión:\n" + error;
+
+                            document.getElementById("message").innerHTML =
+                                "Usuario o contraseña incorrectos.";
+
+                            $(".loader").hide();
+                        }, 1000);
+                    });
+
+            } catch (error) {
+                console.log("ERROR" + error)
+            }
+
+        }
+
+
+
+
+        /********************************************************************
+        Método para crear el token WEB
+        *********************************************************************/
+        function crearToken() {
+
+            const credenciales = {
+                endpoint: "/login_Servicio",
+                codigo: "API001",
+                pwd: "5-!YNtEC3xbN",
+            };
+
+
+            $(".loader").show();
+            fetch("/proxy/login", {
+                credentials: 'include',
+                method: "POST",
+                headers: {
+                    'Authorization': localStorage.jwt
+                },
+                body: JSON.stringify(credenciales)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Error en la solicitud: " + response.status);
+                    }
+
+                    console.log(response.json())
+                    return response.json();
+                })
+                .then(data => {
+
+                    setTimeout(() => {
+
+
+                        let dataResponse = "";
+
+                        if (data.jwt == "" || data.jwt == undefined) {
+                            dataResponse = JSON.stringify(data)
+                        } else {
+                            dataResponse = decodeJWT(data.jwt);
+                        }
+
+
+                        localStorage.jwt = data.jwt || "";
+                        document.getElementById("respuesta").value = "Crear TOKEN WEB:" + "\n" + dataResponse
+
+                        $(".loader").hide();
+                    }, 1000);
+                })
+                .catch(error => {
+                    setTimeout(() => {
+                        document.getElementById("respuesta").value = "Crear TOKEN WEB:" + "\n" + error
+                        console.error("Error creando token:", error);
+                        $(".loader").hide();
+                    }, 1000);
+                });
+        }
+
+
+
+        /********************************************************************
+        Método para obtener el status de las solcitudes HTTP
+        *********************************************************************/
+        function crearpeticion() {
+
+            $(".loader").show();
+
+            fetch("/proxy/estatus", {
+                method: "POST",
+                headers: {
+                    "Authorization": localStorage.jwt || ""
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Error en la solicitud: " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+
+                    setTimeout(() => {
+                        document.getElementById("respuesta").value = "Petición WEB:" + "\n" + data;
+                        document.getElementById("message").innerHTML = "Inicio de sesión exitoso!";
+                        $(".loader").hide();
+                    }, 1000);
+
+                })
+                .catch(error => {
+                    setTimeout(() => {
+                        document.getElementById("respuesta").value = "Petición WEB:" + "\n" + error;
+                        document.getElementById("message").innerHTML = "Usuario o contraseña incorrectos.";
+                        console.error("Error en crearpeticion:", error);
+                        $(".loader").hide();
+                    }, 1000);
+                });
+        }
+
+
+        /********************************************************************
+        Método para realizar peticion con el respectivo Status
+        *********************************************************************/
+        function crearpeticion2() {
+
+            const formData = new FormData();
+            formData.append("select", "*");
+            formData.append("from", "CUSTOMERS");
+            formData.append("where", "Country='United States'");
+            formData.append("orderBy", "City DESC");
+
+            $(".loader").show();
+
+            fetch('/proxy/mba3/orda', {
+                method: 'POST',
+                headers: {
+                    'Authorization': localStorage.jwt || ''
+                },
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error: ' + response.status);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    setTimeout(() => {
+                        document.getElementById("respuesta").value = "Petición WEB2:" + "\n" + data;
+                        console.log('Respuesta del proxy:', data);
+                        $(".loader").hide();
+                    }, 1000);
+                })
+                .catch(error => {
+                    setTimeout(() => {
+                        document.getElementById("respuesta").value = "Petición WEB2:" + "\n" + error;
+                        console.error('Error en crearpeticion2:', error);
+                        $(".loader").hide();
+                    }, 1000);
+
+                });
+        }
+
+
+
+        /********************************************************************
+        Método para realizar solcitudes continuas a modo de ataque DOS
+        *********************************************************************/
+        function ataqueDoS() {
+
+            document.getElementById("respuesta").value = "";
+            $(".loader").show();
+
+            const url = "login.php?action=ataqueDoS";
+
+            for (let i = 0; i < 5; i++) {
+                fetch(url, {
+                    credentials: "include",
+                    maxBodyLength: Infinity,
+                    method: "POST", headers: { "Authorization": localStorage.jwt || "" }
+                }).then(response => {
+                    return response.text();
+                })
+                    .then(data => {
+
+                        setTimeout(() => {
+                            document.getElementById("respuesta").value += `Ataque DOS (${i}):` + "\n" + data + "\n";
+                            console.log("Respuesta del servidor:", data);
+                            $(".loader").hide();
+                        }, 1000);
+                    })
+                    .catch(error => {
+                        setTimeout(() => {
+                            document.getElementById("respuesta").value += `Ataque DOS (${i}):` + "\n" + error + "\n";
+                            console.error("Error en solicitud n°", i, ":", error);
+                            $(".loader").hide();
+                        }, 1000);
+                    });
+            }
+        }
+
+
+
+
+        /********************************************************************
+        Método para realizar consultas Externas a MBA3
+        *********************************************************************/
+        function consulta() {
+
+            const formData = new FormData();
+            formData.append("operacion", "1");
+            formData.append("codigo_empresa", "BM100");
+            formData.append("codigo_cliente", "CLIE1002");
+            formData.append("nombre_cliente", "David");
+            formData.append("identificacion", "1723955132");
+            formData.append("localizacion", "L");
+            formData.append("lista_precios", "1");
+            formData.append("nivel_riesgo", "a");
+            formData.append("fecha_acuse", "False");
+            formData.append("productos_sin_negociacion", "false");
+            formData.append("numero_formato_impresion", "1");
+            formData.append("precio_convertido_1", "false");
+            formData.append("precio_convertido_2", "false");
+            formData.append("cobro_contra_entrega", "");
+            formData.append("codigo_regimen_fiscal", "");
+
+
+            $(".loader").show();
+            const url = "login.php?action=API_Clientes";
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Authorization": localStorage.jwt || ""
+                },
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Error en la solicitud: " + response.status);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+
+                    setTimeout(() => {
+                        document.getElementById("respuesta").value = "MBA3:" + "\n" + data;
+                        console.log("Respuesta del servidor:", data);
+                        $(".loader").hide();
+                    }, 1000);
+
+                })
+                .catch(error => {
+                    setTimeout(() => {
+
+                        document.getElementById("respuesta").value = "MBA3:" + "\n" + error;
+                        console.error("Error en consulta():", error);
+                        $(".loader").hide();
+                    }, 1000);
+                });
+        }
+
+
+
+        /********************************************************************
+        Método para realizar consultar Externas de Clientes a MBA3
+        *********************************************************************/
+
+        function consulta_clientes() {
+            const formData = new FormData();
+            formData.append("select", "*");
+            formData.append("from", "CLNT_Ficha_principal");
+            formData.append("where", "EMPRESA='EMP01'");
+            formData.append("orderBy", "ESTADO DESC");
+            formData.append("limit", "2");
+            formData.append("sesion_web", "AE589C6F33BA07D4730");
+
+            $(".loader").show();
+            const url = "login.php?action=API_Clientes";
+            fetch(url, {
+                credentials: "include",
+                maxBodyLength: Infinity,
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Authorization": localStorage.jwt || ""
+                },
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Error en la solicitud: " + response.status);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    setTimeout(() => {
+                        document.getElementById("respuesta").value = "MBA3 Consulta Clientes:" + "\n" + data;
+                        console.log("Respuesta del servidor:", data);
+                        $(".loader").hide();
+                    }, 1000);
+                    console.log("Respuesta de consulta_clientes:", data);
+                })
+                .catch(error => {
+
+                    setTimeout(() => {
+                        document.getElementById("respuesta").value = "MBA3 Consulta Clientes:" + "\n" + error;
+                        console.log("Respuesta del servidor:", error);
+                        $(".loader").hide();
+                    }, 1000);
+
+                });
+        }
+
+
+
+        /********************************************************************
+            Método para realizar las peticiones API REST
+        *********************************************************************/
+
+
+        function API_Clientes() {
+            try {
+                const formData = new FormData();
+                formData.append("operacion", "0");
+                formData.append("codigo_empresa", "EMP01");
+                formData.append("codigo_cliente", "CLIE1002");
+                formData.append("nombre_cliente", "David");
+                formData.append("identificacion", "1723955132");
+                formData.append("localizacion", "L");
+                formData.append("lista_precios", "1");
+                formData.append("nivel_riesgo", "a");
+                formData.append("fecha_acuse", "False");
+                formData.append("productos_sin_negociacion", "false");
+                formData.append("numero_formato_impresion", "1");
+                formData.append("precio_convertido_1", "false");
+                formData.append("precio_convertido_2", "false");
+                formData.append("cobro_contra_entrega", "");
+                formData.append("codigo_regimen_fiscal", "");
+                formData.append("id_user", "1");
+
+                $(".loader").show();
+
+                const url = "login.php?action=API_Clientes";
+                fetch(url, {
+                    credentials: "include",
+                    maxBodyLength: Infinity,
+                    method: "POST",
+                    mode: "cors",
+                    headers: {
+                        'Authorization': localStorage.jwt
+                    },
+                    body: formData
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Error en la petición: " + response.status);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        setTimeout(() => {
+                            document.getElementById("respuesta").value = "MBA3 API:\n" + data;
+                            console.log("Respuesta del servidor:", data);
+                            $(".loader").hide();
+                        }, 1000);
+                    })
+                    .catch(error => {
+                        setTimeout(() => {
+                            document.getElementById("respuesta").value = "MBA3 API:\n" + error;
+                            console.error("Error en API_Clientes:", error);
+                            $(".loader").hide();
+                        }, 1000);
+                    });
+
+            } catch (error) {
+                console.log("ERROR: " + error);
+            }
+        }
+
+
+
+        /********************************************************************
+        Método para decodificar resultado del login
+        *********************************************************************/
+
+        function decodeJWT(jwt) {
+
+            let resultado = [];
+            const [headerB64, payloadB64, signatureB64] = jwt.split('.');
+
+            const headerJson = atob(headerB64);
+            const payloadJson = atob(payloadB64);
+            const signature = signatureB64;
+
+            const header = JSON.parse(headerJson);
+            const payload = JSON.parse(payloadJson);
+
+            resultado.push(header);
+            resultado.push(payload);
+
+            return JSON.stringify(resultado, null, 2);
+        }
+
+
+
+    </script>
+</body>
+
+</html>
